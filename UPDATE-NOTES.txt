@@ -1,0 +1,8 @@
+Updated September 14, 2026 from your Desktop folder.
+Open index.html to preview. Upload index.html, style.css, and script.js to
+your existing GitHub repository. Keep its existing CNAME file.
+Images are included and unchanged.
+Navy palette and your updated WhatsApp number are preserved.
+Experience animates once from 0 to 50 in one second when visible.
+Reduced-motion users see 50 immediately.
+Product copy avoids unconfirmed temperature or micron ratings.
