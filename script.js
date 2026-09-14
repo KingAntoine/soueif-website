@@ -22,23 +22,28 @@ document.addEventListener('keydown', (event) => {
 });
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-// Count once when visible. Keep the final value without JavaScript or motion.
-const counter = document.querySelector('.counter');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (counter && 'IntersectionObserver' in window && !reduceMotion.matches) {
-  const target = Number(counter.dataset.target);
-  counter.textContent = '0';
+// Each statistic starts when it scrolls into view, once per page load.
+const counters = document.querySelectorAll('[data-count]');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if ('IntersectionObserver' in window && !reducedMotion.matches) {
   const observer = new IntersectionObserver((entries) => {
-    if (!entries.some(entry => entry.isIntersecting)) return;
-    observer.disconnect();
-    const start = performance.now();
-    function tick(now) {
-      const progress = Math.min((now - start) / 1000, 1);
-      counter.textContent = String(Math.floor(progress * target));
-      if (progress < 1 && !reduceMotion.matches) requestAnimationFrame(tick);
-      else counter.textContent = String(target);
-    }
-    requestAnimationFrame(tick);
-  }, { threshold: 0.5 });
-  observer.observe(counter);
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const counter = entry.target;
+      observer.unobserve(counter);
+      const target = Number(counter.dataset.count);
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / 1200, 1);
+        counter.textContent = String(Math.floor(progress * target));
+        if (progress < 1 && !reducedMotion.matches) requestAnimationFrame(tick);
+        else counter.textContent = String(target);
+      }
+      requestAnimationFrame(tick);
+    });
+  }, { threshold: 0.6 });
+  counters.forEach(counter => {
+    counter.textContent = '0';
+    observer.observe(counter);
+  });
 }

@@ -86,5 +86,36 @@ em,
 :focus-visible {
   outline-color: #8c7967;
 }
-
+/* Consistent solution rows and isolated statistic styles */
+.solution-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:60px;align-items:center;padding:42px 0;border-top:1px solid var(--line)}
+.solution-photo{height:480px;background:#f7f7f7;display:flex;flex-direction:column;overflow:hidden}
+.solution-photo img{width:100%;height:calc(100% - 45px);min-height:0;object-fit:contain}
+.solution-photo figcaption{height:45px;padding:12px 18px;font-size:11px;color:var(--muted);background:#eeeae6}
+.accessories-photo img{object-fit:cover;object-position:center 62%}
+.solution-row .product-copy h3{font-size:34px}
+.filter-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:28px}
+.filter-gallery figure{border:1px solid var(--line);background:white}
+.filter-gallery img{width:100%;height:240px;object-fit:contain}
+.filter-gallery figcaption{padding:15px 18px;font-size:13px;border-top:1px solid var(--line)}
+.statistics{padding:48px 0;background:#eeeae6}
+.stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.stat{padding:12px 28px;border-left:1px solid #bfb6ae}
+.stat:first-child{padding-left:0;border-left:0}
+.stat-value,.stat-value span{font-family:Arial,Helvetica,sans-serif;font-size:30px;font-weight:500;line-height:1.25;color:#052354}
+.stat-value{display:block;letter-spacing:-1px}
+.stat-value [data-count]{display:inline-block;min-width:2ch;font-variant-numeric:tabular-nums}
+.stat p{font-size:12px;color:var(--muted);margin-top:12px}
+.about-grid h2{margin-bottom:24px}
+@media(max-width:760px){
+.solution-row{grid-template-columns:1fr;gap:28px;padding:30px 0}
+.solution-photo{height:350px}
+.solution-row .product-copy h3{font-size:30px}
+.filter-gallery{grid-template-columns:1fr;gap:20px}
+.filter-gallery img{height:260px}
+.stats-grid{grid-template-columns:1fr}
+.stat,.stat:first-child{padding:24px 0;border:0}
+.stat+.stat{border-top:1px solid #bfb6ae}
+.stat-value,.stat-value span{font-size:30px}
+.statistics{padding:16px 0}
+}
 
